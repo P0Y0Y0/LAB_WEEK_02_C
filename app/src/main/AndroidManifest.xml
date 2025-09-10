@@ -20,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SingleTopActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".StandardActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

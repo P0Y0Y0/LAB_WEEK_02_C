@@ -1,39 +1,35 @@
 package com.example.lab_week_02_c
 
+import android.app.ComponentCaller
 import android.content.Intent
 import android.os.Bundle
-import android.os.Debug
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.util.Log
 import android.widget.Button
-import android.view.View
 
-class MainActivity : AppCompatActivity() {
+class StandardActivity : AppCompatActivity() {
     companion object {
         private const val DEBUG = "DEBUG"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_standard)
         Log.d(DEBUG, "onCreate")
 
-        val buttonClickListener = View.OnClickListener { view ->
-            when (view.id) {R.id.button_standard -> startActivity(
+        findViewById<Button>(R.id.button_standard).setOnClickListener {
+            startActivity(
                 Intent(this,
                     StandardActivity::class.java)
             )
-                R.id.button_single_top -> startActivity(
-                    Intent(this,
-                        SingleTopActivity::class.java)
-                )
-            }
         }
+    }
 
-        findViewById<Button>(R.id.button_standard).setOnClickListener(buttonClickListener)
-        findViewById<Button>(R.id.button_single_top).setOnClickListener(buttonClickListener)
+    override fun onNewIntent(intent: Intent, caller: ComponentCaller) {
+        super.onNewIntent(intent)
+        Log.d(DEBUG, "onNewIntent")
     }
 }
